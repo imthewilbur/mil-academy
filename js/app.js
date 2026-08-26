@@ -209,12 +209,17 @@
       `;
     }
 
+    const referenceHtml = question.reference
+      ? `<div class="quiz-reference"><div class="quiz-reference-label">Reference</div>${renderBlock(question.reference)}</div>`
+      : '';
+
     el.innerHTML = `
       <div class="quiz-header">
         <div class="level-kicker">${level.title} — Quiz</div>
         <div class="quiz-progress">Question ${q.index + 1} of ${q.questions.length}</div>
       </div>
       <div class="quiz-question-card">
+        ${referenceHtml}
         <p class="quiz-question-text">${question.q}</p>
         ${bodyHtml}
         <div class="quiz-feedback ${q.answered ? 'show ' + (q.wasCorrect ? 'correct' : 'incorrect') : ''}" id="quizFeedback">

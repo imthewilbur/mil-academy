@@ -439,6 +439,26 @@ body {
   margin-bottom: 20px;
 }
 
+.quiz-reference {
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.quiz-reference-label {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive-bright);
+  margin-bottom: 10px;
+}
+
+.quiz-reference .block-table,
+.quiz-reference .block-svg,
+.quiz-reference .block-formula {
+  margin-bottom: 0;
+}
+
 .quiz-question-text {
   font-size: 16px;
   line-height: 1.55;

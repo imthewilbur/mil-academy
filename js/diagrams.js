@@ -120,6 +120,54 @@ Diagrams.reticleOnTarget = function (opts) {
   </svg>`;
 };
 
+Diagrams.angleShot = function (opts) {
+  opts = opts || {};
+  const angleDeg = opts.angleDeg || 30;
+  const rad = angleDeg * Math.PI / 180;
+  const cx = 70, cy = 260;
+  const slantLen = 480;
+  const tx = cx + slantLen * Math.cos(rad);
+  const ty = cy - slantLen * Math.sin(rad);
+
+  return `
+  <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" font-family="SF Mono, Menlo, monospace">
+    <!-- horizontal (effective range) -->
+    <line x1="${cx}" y1="${cy}" x2="${tx}" y2="${cy}" stroke="#8a9a5b" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="${(cx + tx) / 2}" y="${cy + 22}" fill="#a4b872" font-size="12" text-anchor="middle">Effective (corrected) range</text>
+
+    <!-- vertical drop to target -->
+    <line x1="${tx}" y1="${cy}" x2="${tx}" y2="${ty}" stroke="#33391f" stroke-width="1" stroke-dasharray="3,3"/>
+
+    <!-- line of sight (slant) -->
+    <line x1="${cx}" y1="${cy}" x2="${tx}" y2="${ty}" stroke="#c2a878" stroke-width="2"/>
+    <text x="${cx + (tx - cx) * 0.55 + 14}" y="${cy + (ty - cy) * 0.55 - 6}" fill="#c2a878" font-size="12">Line-of-sight distance</text>
+
+    <!-- angle arc -->
+    <path d="M ${cx + 46} ${cy} A 46 46 0 0 0 ${cx + 46 * Math.cos(rad)} ${cy - 46 * Math.sin(rad)}" fill="none" stroke="#d9a441" stroke-width="1.5"/>
+    <text x="${cx + 58}" y="${cy - 14}" fill="#d9a441" font-size="12">${angleDeg}°</text>
+
+    <!-- shooter / target markers -->
+    <circle cx="${cx}" cy="${cy}" r="5" fill="#e8e6d9"/>
+    <text x="${cx - 10}" y="${cy + 40}" fill="#a9a795" font-size="11" text-anchor="middle">SHOOTER</text>
+    <circle cx="${tx}" cy="${ty}" r="5" fill="#d9a441"/>
+    <text x="${tx}" y="${ty - 14}" fill="#e8e6d9" font-size="11" text-anchor="middle">TARGET</text>
+  </svg>`;
+};
+
+Diagrams.turretRevolution = function () {
+  const cx = 320, cy = 170, r = 110;
+  return `
+  <svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg" font-family="SF Mono, Menlo, monospace">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="#1b1e15" stroke="#33391f" stroke-width="1.5"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#8a9a5b" stroke-width="3" stroke-dasharray="${Math.PI * r * 0.5} ${Math.PI * r * 1.5}" transform="rotate(-90 ${cx} ${cy})"/>
+    <text x="${cx}" y="${cy - 8}" fill="#e8e6d9" font-size="15" text-anchor="middle">0 → 10.0 mil</text>
+    <text x="${cx}" y="${cy + 14}" fill="#a9a795" font-size="11" text-anchor="middle">Revolution 1</text>
+    <circle cx="${cx}" cy="${cy - r}" r="4" fill="#d9a441"/>
+    <text x="${cx + 30}" y="${cy - r + 4}" fill="#d9a441" font-size="11">Revolution indicator</text>
+    <text x="${cx}" y="${cy + r + 34}" fill="#726f5f" font-size="12" text-anchor="middle">One full spin of the turret = 10.0 mil on this example scope</text>
+  </svg>`;
+};
+
 Diagrams.windClock = function () {
   const cx = 200, cy = 200, r = 150;
   const points = [
