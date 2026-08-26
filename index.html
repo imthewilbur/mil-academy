@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIL Academy — Learn to Read a Mil-Reticle Scope</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◎</span>
+      <span class="brand-name">MIL ACADEMY</span>
+    </div>
+    <div class="topbar-progress">
+      <div class="topbar-progress-track">
+        <div class="topbar-progress-fill" id="overallProgressFill"></div>
+      </div>
+      <span class="topbar-progress-label" id="overallProgressLabel">0% complete</span>
+    </div>
+    <button class="reset-btn" id="resetProgressBtn" title="Reset all progress">Reset Progress</button>
+  </header>
+
+  <div class="app-body">
+
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-title">Course Levels</div>
+      <ol class="level-list" id="levelList"></ol>
+    </nav>
+
+    <main class="content" id="content">
+      <!-- Injected by app.js -->
+    </main>
+
+  </div>
+
+</div>
+
+<script src="js/diagrams.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
